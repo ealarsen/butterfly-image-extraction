@@ -45,6 +45,12 @@ def best_outline(small_img, large_img, EoLobjectID, param_dir = None, composite_
     H, W = large_img.shape[:2]
     h, w = small_img.shape[:2]
 
+    #if parameter set, then shrink large images (grabcut fails on large images in windows)
+    shrink_large = False;
+    if shrink_large is True and min(H,W) > 2000:
+        large_img = cv2.resize(large_img,  (0,0), fx = (1500/min(H,W)), fy = (1500/min(H,W)))
+        H, W = large_img.shape[:2]
+
     #save the small original as fist pic in a tiled image
     if composite_file_dir is not None:
         tiled = tiled_img()
