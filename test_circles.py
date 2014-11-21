@@ -25,6 +25,7 @@ if os.path.isdir(image_folder):
                 (cx,cy),cr = cv2.minEnclosingCircle(c)
                 print("{} {} {}".format(cx,cy,cr)) #ADDED PARENTHESES
                 cv2.circle(display_image, (int(cx),int(cy)),int(cr*.75), color=(0,0,255), thickness=cv2.cv.CV_FILLED) ## Add red circles
+            cv2.imwrite("color_circle_result.jpg", display_image)
             cv2.imshow("found circles", display_image) #ADDED COMMA
             cv2.waitKey()
 
